@@ -10,8 +10,6 @@ def input_error(func):
             return "Enter user name."
     return inner
 
-contacts = {}
-
 @input_error
 def add_contact(args, contacts):
     name, phone = args
@@ -42,16 +40,15 @@ def show_all(contacts):
     return "\n".join(result)
 
 def main():
+    contacts = {}
     while True:
-        command = input("Enter a command: ").strip().lower()
+        user_input = input("Enter a command: ")
+        command, *args = user_input.strip().lower().split()
         if command == "add":
-            args = input("Enter name and phone: ").split()
             print(add_contact(args, contacts))
         elif command == "change":
-            args = input("Enter name and new phone: ").split()
             print(change_contact(args, contacts))
         elif command == "phone":
-            args = input("Enter name: ").split()
             print(get_phone(args, contacts))
         elif command == "all":
             print(show_all(contacts))
