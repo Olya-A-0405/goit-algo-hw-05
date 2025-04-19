@@ -42,8 +42,10 @@ def show_all(contacts):
 def main():
     contacts = {}
     while True:
-        user_input = input("Enter a command: ")
-        command, *args = user_input.strip().lower().split()
+        user_input = input("Enter a command: ").strip()
+        if not user_input:
+            continue
+        command, *args = user_input.lower().split()
         if command == "add":
             print(add_contact(args, contacts))
         elif command == "change":
